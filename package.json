@@ -1,0 +1,12 @@
+{
+  "name"         : "execution-service",
+  "version"      : "0.0.1",
+  "description"  : "Execute a command over HTTP",
+  "main"         : "server.js",
+  "author"       : "vineet.cs@gmail.com",
+  "homepage"     : "http://vineetg.github.io/execution-service",
+  "dependencies" : {
+    "restify"       : "latest",
+    "sqlite3"       : "latest"
+  }
+}
