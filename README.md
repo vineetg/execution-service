@@ -12,8 +12,8 @@ $ curl http://localhost:8080/1
   "command":"ls /tmp/",
   "options":{},
   "status":200,
-  "stdout":"files"
-  stderr":""
+  "stdout":"files",
+  "stderr":""
 }
 ```
 Supported POST parameters are -
