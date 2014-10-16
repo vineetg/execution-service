@@ -1,10 +1,10 @@
 var exec = require('child_process').exec;
 var db = require('./lib/db');
 
-function processRecord(rowid, command, next) {
+function processRecord(rowid, command, options, next) {
    // Process the command. Passes retCode, stdout, stderr to
    // callback
-   var child = exec(command, function(error, stdout, stderr) {
+   var child = exec(command, options, function(error, stdout, stderr) {
       var status = 200;
       if (error) {
          status = 500;
@@ -26,7 +26,7 @@ function process() {
       var total_items = rows.length;
       console.log("Total items: " + total_items);
       for (var i=0; i<total_items; i++) {
-         processRecord(rows[i].rowid, rows[i].command);
+         processRecord(rows[i].rowid, rows[i].command, JSON.parse(rows[i].options));
       }
    });
 }

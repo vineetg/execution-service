@@ -14,6 +14,7 @@ function get(req, res, next) {
       }
       if (row) {
          response['command'] = row.command;
+         response['options'] = JSON.parse(row.options);
          response['status'] = row.status;
          response['stdout'] = row.stdout;
          response['stderr'] = row.stderr;
@@ -26,10 +27,20 @@ function get(req, res, next) {
 }
 
 function post(req, res, next) {
-   response = {};
-   command = req.params['command'];
+   var response = {};
+   var command = req.params['command'];
+   var options = {
+      encoding: req.params['encoding'],
+      timeout: req.params['timeout'],
+      maxBufer: req.params['maxBufer'],
+      killSignal: req.params['killSignal'],
+      cwd: req.params['cwd'],
+      env: req.params['env']
+   };
 
-   db.addJob(command, function(err, result) {
+   options = JSON.stringify(options);
+
+   db.addJob(command, options, function(err, result) {
       if (err) {
          res.send(400);
       }
